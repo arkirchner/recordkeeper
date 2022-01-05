@@ -9,11 +9,11 @@ gem 'bootsnap', require: false
 gem 'coingecko_ruby'
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'pg'
 gem 'puma'
 gem 'rails', '~> 7.0.0'
 gem 'redis'
 gem 'sprockets-rails'
-gem 'sqlite3', '~> 1.4'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 
