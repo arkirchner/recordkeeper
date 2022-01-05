@@ -1,0 +1,14 @@
+require:
+  - rubocop-minitest
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.0
+  Exclude:
+    - bin/*
+    - db/schema.rb
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
