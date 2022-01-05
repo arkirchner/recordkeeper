@@ -12,7 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2022_01_05_151745) do
 
-  create_table "coins", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "coins", id: :string, force: :cascade do |t|
+    t.string "symbol", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

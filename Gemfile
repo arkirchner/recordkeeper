@@ -26,6 +26,7 @@ group :development do
 end
 
 group :test do
+  gem 'byebug'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
