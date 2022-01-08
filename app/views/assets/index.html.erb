@@ -1,0 +1,25 @@
+<table class="table p-4 bg-white shadow rounded-lg">
+  <thead>
+    <tr>
+      <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+	Name
+      </th>
+      <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+        Holdings
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @assets.each do |asset| %>
+      <tr class="text-gray-700">
+        <td class="border-b-2 p-4 dark:border-dark-5">
+          <%= asset.coin.name %>
+        </td>
+        <td class="border-b-2 p-4 dark:border-dark-5">
+          <%= asset.amount %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
