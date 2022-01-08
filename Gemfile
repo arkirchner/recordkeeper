@@ -15,6 +15,7 @@ gem 'rails', '~> 7.0.0'
 gem 'redis'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
+gem 'tailwindcss-rails'
 gem 'turbo-rails'
 
 group :development, :test do
