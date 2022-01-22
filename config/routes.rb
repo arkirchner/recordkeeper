@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :assets, path: 'holdings', only: %i[index create]
 
-  # Defines the root path route ("/")
-  root "assets#index"
+  resources :coins, only: [] do
+    resources :transactions, only: %i[new create]
+  end
+
+  root 'assets#index'
 end

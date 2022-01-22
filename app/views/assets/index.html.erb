@@ -1,25 +1,37 @@
-<table class="table p-4 bg-white shadow rounded-lg">
-  <thead>
-    <tr>
-      <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
-	Name
-      </th>
-      <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
-        Holdings
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @assets.each do |asset| %>
-      <tr class="text-gray-700">
-        <td class="border-b-2 p-4 dark:border-dark-5">
-          <%= asset.coin.name %>
-        </td>
-        <td class="border-b-2 p-4 dark:border-dark-5">
-          <%= asset.amount %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<section class="mb-20">
+  <%= form_with model: @new_asset, class: 'flex flex-col md:flex-row w-3/4 md:w-full max-w-sm md:space-x-3 space-y-3 md:space-y-0 justify-center' do |form| %>
+    <div class="relative">
+      <%= form.label :coin_id %>
+      <%= form.select :coin_id, Coin.all.collect {|c| [c.name, c.id]}, { include_blank: true }, class: 'rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent' %>
+    </div>
 
+    <%= form.submit 'Add new', class: 'flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200' %>
+  <% end %>
+</section>
+
+<section>
+  <table class="table p-4 bg-white shadow rounded-lg">
+    <thead>
+      <tr>
+	<th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+	  Name
+	</th>
+	<th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+	  Holdings
+	</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @assets.each do |asset| %>
+	<tr class="text-gray-700">
+	  <td class="border-b-2 p-4 dark:border-dark-5">
+	    <%= asset.coin.name %>
+	  </td>
+	  <td class="border-b-2 p-4 dark:border-dark-5">
+	    <%= asset.amount %>
+	  </td>
+	</tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

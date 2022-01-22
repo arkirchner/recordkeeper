@@ -1,0 +1,5 @@
+<%= form_with model: @transaction, url: coin_transactions_path(coin_id: @coin) do |form| %>
+  <%= form.label :amount %>
+  <%= form.number_field :amount, step: :any %>
+  <%= form.submit 'Add Transaction' %>
+<% end %>
