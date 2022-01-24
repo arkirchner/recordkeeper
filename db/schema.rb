@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_07_173006) do
+ActiveRecord::Schema.define(version: 2022_01_24_165818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,20 @@ ActiveRecord::Schema.define(version: 2022_01_07_173006) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "ohlcs", force: :cascade do |t|
+    t.decimal "open", precision: 8, scale: 2, null: false
+    t.decimal "high", precision: 8, scale: 2, null: false
+    t.decimal "low", precision: 8, scale: 2, null: false
+    t.decimal "close", precision: 8, scale: 2, null: false
+    t.string "coin_id", null: false
+    t.string "source", null: false
+    t.datetime "recorded_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["coin_id"], name: "index_ohlcs_on_coin_id"
+    t.index ["recorded_at"], name: "index_ohlcs_on_recorded_at", unique: true
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.bigint "asset_id", null: false
     t.float "amount", null: false
@@ -44,5 +58,6 @@ ActiveRecord::Schema.define(version: 2022_01_07_173006) do
 
   add_foreign_key "assets", "coins"
   add_foreign_key "assets", "users"
+  add_foreign_key "ohlcs", "coins"
   add_foreign_key "transactions", "assets"
 end
