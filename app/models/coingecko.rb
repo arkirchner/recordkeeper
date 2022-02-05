@@ -11,6 +11,10 @@ module Coingecko
       @id = id
     end
 
+    def load_coin
+      JSON.parse(Net::HTTP.get(coin_uri))
+    end
+
     def load_ohlc
       case response
       when Net::HTTPSuccess
@@ -44,6 +48,10 @@ module Coingecko
 
     def ohlc_uri
       URI("#{BASE_URL}coins/#{id}/ohlc?vs_currency=usd&days=1")
+    end
+
+    def coin_uri
+      URI("#{BASE_URL}coins/#{id}")
     end
 
     attr_reader :id
