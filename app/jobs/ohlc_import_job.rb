@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class OhlcImportJob < ApplicationJob
+  retry_on Coingecko::Coin::FreeTierLimitReached, wait: 61.seconds, attempts: 50, jitter: false
   queue_as :default
 
   def perform(coin)

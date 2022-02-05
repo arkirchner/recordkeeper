@@ -46,4 +46,15 @@ class OhlcImportJobTest < ActiveJob::TestCase
       OhlcImportJob.perform_now(@coin)
     end
   end
+
+  test 'scheduals the job 61 seconds later when too many requests have been made' do
+    stub_request(:get, API_ENDPOINT)
+      .to_return(status: 429, body: '')
+
+    freeze_time do
+      assert_enqueued_with(job: OhlcImportJob, args: [@coin], at: 61.seconds.from_now) do
+        OhlcImportJob.perform_now(@coin)
+      end
+    end
+  end
 end

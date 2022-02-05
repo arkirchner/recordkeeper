@@ -5,19 +5,30 @@ module Coingecko
   SOURCE_NAME = 'coingecko'
 
   class Coin
+    class FreeTierLimitReached < StandardError; end
+
     def initialize(id)
       @id = id
     end
 
     def load_ohlc
-      response = Net::HTTP.get(ohlc_uri)
-
-      parse_ohlc(JSON.parse(response)).map do |params|
-        params.merge(coin_id: id, source: SOURCE_NAME)
+      case response
+      when Net::HTTPSuccess
+        parse_ohlc(JSON.parse(response.body)).map do |params|
+          params.merge(coin_id: id, source: SOURCE_NAME)
+        end
+      when Net::HTTPTooManyRequests
+        raise FreeTierLimitReached
+      else
+        raise "Coingecko response error: #{response}"
       end
     end
 
     private
+
+    def response
+      @response || Net::HTTP.get_response(ohlc_uri)
+    end
 
     def parse_ohlc(params)
       params.map do |date, open, high, low, close|
