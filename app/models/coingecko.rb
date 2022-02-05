@@ -23,10 +23,10 @@ module Coingecko
       params.map do |date, open, high, low, close|
         {
           recorded_at: Time.zone.at(0, date, :millisecond),
-          open: open,
-          high: high,
-          low: low,
-          close: close
+          open:,
+          high:,
+          low:,
+          close:
         }
       end
     end

@@ -5,7 +5,7 @@ require 'test_helper'
 class TransactionTest < ActiveSupport::TestCase
   setup do
     coin = Coin.create!(id: 'cardano', symbol: 'ada', name: 'Cardano')
-    @asset = Asset.create!(coin: coin, user: User.create!)
+    @asset = Asset.create!(coin:, user: User.create!)
   end
 
   test 'adds transactions amount to the assets total amount' do
