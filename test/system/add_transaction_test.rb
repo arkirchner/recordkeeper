@@ -18,6 +18,7 @@ class AddTransactionTest < ApplicationSystemTestCase
     ]
 
     Coin.create!(coins)
+    User.create!
   end
 
   test 'add transaction for new issue' do
