@@ -3,6 +3,8 @@
 require 'test_helper'
 
 class CoinTest < ActiveSupport::TestCase
+  include ActiveJob::TestHelper
+
   test '.import, it inserts a coint to the database' do
     coin = {
       id: 'cardano',
@@ -16,5 +18,15 @@ class CoinTest < ActiveSupport::TestCase
     Coin.import('cardano')
 
     assert Coin.exists?(coin), 'Did not import Cardano coin.'
+  end
+
+  test '.update_ohlc' do
+    cardano = Coin.create!(id: 'cardano', symbol: 'ada', name: 'Cardano')
+    cosmos = Coin.create!(id: 'cosmos', symbol: 'atom', name: 'Cosmos')
+
+    Coin.update_ohlc
+
+    assert_enqueued_with(job: OhlcImportJob, args: [cardano])
+    assert_enqueued_with(job: OhlcImportJob, args: [cosmos])
   end
 end
