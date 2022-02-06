@@ -8,6 +8,6 @@ class OhlcImportJob < ApplicationJob
     params = Coingecko::Coin.new(coin.id).load_ohlc
                             .select { |p| p[:recorded_at] < Time.current }
 
-    Ohlc.upsert_all(params)
+    Ohlc.upsert_all(params, unique_by: %i[coin_id recorded_at])
   end
 end
