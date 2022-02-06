@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_24_165818) do
+ActiveRecord::Schema.define(version: 2022_02_06_042223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_01_24_165818) do
   create_table "assets", force: :cascade do |t|
     t.string "coin_id", null: false
     t.float "amount", default: 0.0, null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["user_id", "coin_id"], name: "index_assets_on_user_id_and_coin_id", unique: true
   end
@@ -37,17 +37,16 @@ ActiveRecord::Schema.define(version: 2022_01_24_165818) do
     t.decimal "close", precision: 8, scale: 2, null: false
     t.string "coin_id", null: false
     t.string "source", null: false
-    t.datetime "recorded_at", null: false
+    t.datetime "recorded_at", precision: 6, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["coin_id"], name: "index_ohlcs_on_coin_id"
-    t.index ["recorded_at"], name: "index_ohlcs_on_recorded_at", unique: true
+    t.index ["coin_id", "recorded_at"], name: "index_ohlcs_on_coin_id_and_recorded_at", unique: true
   end
 
   create_table "transactions", force: :cascade do |t|
     t.bigint "asset_id", null: false
     t.float "amount", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: 6, null: false
     t.index ["asset_id"], name: "index_transactions_on_asset_id"
   end
 
