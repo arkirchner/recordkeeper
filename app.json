@@ -4,5 +4,10 @@
       "command": "bin/rails runner Coin.update_ohlc",
       "schedule": "@hourly"
     }
-  ]
+  ],
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bin/rails db:migrate"
+    }
+  }
 }
