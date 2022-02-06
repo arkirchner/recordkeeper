@@ -6,12 +6,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.0'
 
 gem 'bootsnap', require: false
+gem 'gitlab-sidekiq-fetcher', require: 'sidekiq-reliable-fetch'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 7.0.0'
 gem 'redis'
+gem 'sidekiq'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'tailwindcss-rails'

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   resources :assets, path: 'holdings', only: %i[index create]
 
@@ -8,4 +10,6 @@ Rails.application.routes.draw do
   end
 
   root 'assets#index'
+
+  mount Sidekiq::Web => '/sidekiq'
 end

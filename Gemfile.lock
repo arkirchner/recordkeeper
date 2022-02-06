@@ -84,6 +84,7 @@ GEM
       xpath (~> 3.2)
     childprocess (4.1.0)
     concurrent-ruby (1.1.9)
+    connection_pool (2.2.5)
     crack (0.4.5)
       rexml
     crass (1.0.6)
@@ -92,6 +93,8 @@ GEM
       reline (>= 0.2.7)
     digest (3.1.0)
     erubi (1.10.0)
+    gitlab-sidekiq-fetcher (0.8.0)
+      sidekiq (~> 6.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
@@ -183,6 +186,10 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
+    sidekiq (6.4.0)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -234,6 +241,7 @@ DEPENDENCIES
   byebug
   capybara
   debug
+  gitlab-sidekiq-fetcher
   importmap-rails
   jbuilder
   pg
@@ -241,6 +249,7 @@ DEPENDENCIES
   rails (~> 7.0.0)
   redis
   selenium-webdriver
+  sidekiq
   sprockets-rails
   stimulus-rails
   tailwindcss-rails
