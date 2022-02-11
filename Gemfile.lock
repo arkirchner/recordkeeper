@@ -110,6 +110,9 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    kredis (1.0.1)
+      activesupport (>= 6.0.0)
+      redis (~> 4.2)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -244,6 +247,7 @@ DEPENDENCIES
   gitlab-sidekiq-fetcher
   importmap-rails
   jbuilder
+  kredis
   pg
   puma
   rails (~> 7.0.0)
