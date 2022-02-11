@@ -19,6 +19,12 @@
 	<th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
 	  Holdings
 	</th>
+	<th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+	  Price
+	</th>
+	<th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+	  24h change
+	</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +35,12 @@
 	  </td>
 	  <td class="border-b-2 p-4 dark:border-dark-5">
 	    <%= number_with_delimiter asset.amount %>
+	  </td>
+	  <td class="border-b-2 p-4 dark:border-dark-5">
+	    <%= number_to_currency asset.coin.current_price.value %>
+	  </td>
+	  <td class="border-b-2 p-4 dark:border-dark-5">
+	    <%= number_to_percentage asset.coin.twenty_four_hours_change.value %>
 	  </td>
 	</tr>
       <% end %>

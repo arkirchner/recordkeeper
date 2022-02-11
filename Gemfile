@@ -9,6 +9,7 @@ gem 'bootsnap', require: false
 gem 'gitlab-sidekiq-fetcher', require: 'sidekiq-reliable-fetch'
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'kredis'
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 7.0.0'
@@ -18,7 +19,6 @@ gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'tailwindcss-rails'
 gem 'turbo-rails'
-gem 'kredis'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]

@@ -4,9 +4,36 @@ module Coingecko
   BASE_URL = 'https://api.coingecko.com/api/v3/'
   SOURCE_NAME = 'coingecko'
 
-  class Coin
-    class FreeTierLimitReached < StandardError; end
+  class FreeTierLimitReached < StandardError; end
 
+  class CurrentPrice
+    def initialize(coin_ids)
+      @coin_ids = coin_ids
+    end
+
+    def load
+      response = Net::HTTP.get_response(uri)
+
+      case response
+      when Net::HTTPSuccess
+        JSON.parse(response.body)
+      when Net::HTTPTooManyRequests
+        raise FreeTierLimitReached
+      else
+        raise "Coingecko response error: #{response}"
+      end
+    end
+
+    private
+
+    def uri
+      URI("#{BASE_URL}simple/price?ids=#{coin_ids.join(',')}&vs_currencies=usd&include_24hr_change=true")
+    end
+
+    attr_reader :coin_ids
+  end
+
+  class Coin
     def initialize(id)
       @id = id
     end
@@ -31,7 +58,7 @@ module Coingecko
     private
 
     def response
-      @response || Net::HTTP.get_response(ohlc_uri)
+      @response ||= Net::HTTP.get_response(ohlc_uri)
     end
 
     def parse_ohlc(params)

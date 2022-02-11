@@ -1,5 +1,5 @@
 production: &production
-  url: <%= ENV.fetch("KREDIS_REDIS_URL") %>
+  url: <%= ENV.fetch("KREDIS_REDIS_URL", "redis://127.0.0.1:6379/0") %>
   timeout: 1
 
 development: &development

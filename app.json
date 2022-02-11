@@ -3,6 +3,10 @@
     {
       "command": "bin/rails runner Coin.update_ohlc",
       "schedule": "@hourly"
+    },
+    {
+      "command": "bin/rails runner Coin.set_current_values",
+      "schedule": "*/5 * * * *"
     }
   ],
   "scripts": {
