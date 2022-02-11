@@ -7,10 +7,11 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    asset = Asset.find_or_initialize_by(coin_id: params[:coin_id], user: current_user)
-    transaction = Transaction.new(transaction_params.merge(asset:))
+    @coin = Coin.find(params[:coin_id])
+    asset = Asset.find_or_initialize_by(coin: @coin, user: current_user)
+    @transaction = Transaction.new(transaction_params.merge(asset:))
 
-    if transaction.save
+    if @transaction.save
       redirect_to assets_path
     else
       render :new
