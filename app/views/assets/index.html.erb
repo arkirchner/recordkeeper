@@ -1,4 +1,8 @@
 <section class="mb-20">
+  <p>Current portfolio value: <%= number_to_currency current_user.current_balance %></p>
+</section>
+
+<section>
   <%= form_with model: @new_asset, class: 'flex flex-col md:flex-row w-3/4 md:w-full max-w-sm md:space-x-3 space-y-3 md:space-y-0 justify-center' do |form| %>
     <div class="relative">
       <%= form.label :coin_id %>
@@ -25,6 +29,9 @@
 	<th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
 	  24h change
 	</th>
+	<th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+	  total
+	</th>
       </tr>
     </thead>
     <tbody>
@@ -41,6 +48,9 @@
 	  </td>
 	  <td class="border-b-2 p-4 dark:border-dark-5">
 	    <%= number_to_percentage asset.coin.twenty_four_hours_change.value %>
+	  </td>
+	  <td class="border-b-2 p-4 dark:border-dark-5">
+            <%= number_to_currency (asset.coin.current_price.value || 0) * asset.amount %>
 	  </td>
 	</tr>
       <% end %>
