@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.0'
 
 gem 'bootsnap', require: false
+gem 'faraday'
 gem 'gitlab-sidekiq-fetcher', require: 'sidekiq-reliable-fetch'
 gem 'importmap-rails'
 gem 'jbuilder'
